@@ -1,9 +1,6 @@
 package com.todo.app.mvc;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.todo.app.model.Todo;
 import com.todo.app.service.TodoServiceI;
-
+/**
+ * TodoController - This class acts as rest controller for todo app 
+ * @author Zubair Idrees 
+ */
 @RestController
 @CrossOrigin
 @RequestMapping(value = "/api/todo")
@@ -32,22 +32,41 @@ public class TodoController {
 	@Autowired
 	TodoServiceI todoService;
 
+	/**
+	 * 
+	 * @param page
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Page<Todo>> findAllTodo(Pageable page,HttpServletRequest req) {
 		Page<Todo> list = todoService.findAll(page);
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
+	/**
+	 * 
+	 * @param text
+	 */
 	@RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void createTodo(@RequestBody String text) {
 		todoService.save(text);
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @param statusId
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void updateStatus(@PathVariable String id, @RequestBody Integer statusId) {
 		todoService.updateStatus(id, statusId);
 	}
 
+	/**
+	 * 
+	 * @param id
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void delete(@PathVariable String id) {
 		todoService.delete(id);

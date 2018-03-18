@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 import com.todo.app.common.Constants.Status;
 import com.todo.app.model.Todo;
 import com.todo.app.repository.TodoRepository;
-
+/**
+ * TodoServiceImpl - This class is used to do all CRUD services for todo app
+ * @author Zubair Idrees 
+ */
 @Service
 public class TodoServiceImpl implements TodoServiceI{
 

@@ -1,5 +1,8 @@
 package com.todo.app.common;
-
+/**
+ * Constants - This class is used to define contants for todo app 
+ * @author Zubair Idrees 
+ */
 public class Constants {
 
 	public enum Status {
